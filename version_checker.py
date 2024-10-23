@@ -18,11 +18,12 @@ def get_public_version(project_name: str, is_test = False) -> Version:
 if __name__ == '__main__':
     pyproject_toml_path = sys.argv[1]
     test_regex = sys.argv[2]
+    use_test_pypi = sys.argv[3]
     with open(pyproject_toml_path, 'rb') as f:
         project = tomli.load(f)
 
     project_version = version.parse(project['project']['version'])
-    is_test = False
+    is_test = use_test_pypi == 'true'
     if test_regex:
         if re.compile(test_regex).search(str(project_version)):
             is_test = True

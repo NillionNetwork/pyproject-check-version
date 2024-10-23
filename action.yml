@@ -12,6 +12,10 @@ inputs:
   test-regex:
     description: "regex for testing whether destination is test.pypi.org or not"
     required: false
+  use-test-pypi:
+    description: "Force use of test.pypi.org"
+    required: false
+    default: "false"
 outputs:
   local_version_is_higher:
     description: "True if local version is higher than public version"
@@ -28,3 +32,5 @@ runs:
   args:
     - ${{ inputs.pyproject-path }}
     - ${{ inputs.test-regex }}
+    - ${{ inputs.use-test-pypi }}
+
